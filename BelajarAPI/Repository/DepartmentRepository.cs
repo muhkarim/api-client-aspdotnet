@@ -25,6 +25,7 @@ namespace BelajarAPI.Repository
             parameter.Add("@Name", department.Name);
             var create = connection.Execute(procName, parameter, commandType: CommandType.StoredProcedure);
             return create;
+
             
             
             //throw new NotImplementedException();
