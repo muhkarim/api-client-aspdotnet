@@ -80,3 +80,4 @@ C:\Users\Karim\Documents\Visual Studio 2017\Projects\BelajarAPI\BelajarAPI\obj\D
 C:\Users\Karim\Documents\Visual Studio 2017\Projects\BelajarAPI\BelajarAPI\obj\Debug\BelajarAPI.csproj.CopyComplete
 C:\Users\Karim\Documents\Visual Studio 2017\Projects\BelajarAPI\BelajarAPI\obj\Debug\BelajarAPI.dll
 C:\Users\Karim\Documents\Visual Studio 2017\Projects\BelajarAPI\BelajarAPI\obj\Debug\BelajarAPI.pdb
+C:\Users\Karim\Documents\Visual Studio 2017\Projects\BelajarAPI\BelajarAPI\obj\Debug\BelajarAPI.csprojAssemblyReference.cache
