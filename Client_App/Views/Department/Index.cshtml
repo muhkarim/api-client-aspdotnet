@@ -1,29 +1,62 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Index Department";
     Layout = "~/Views/Layouts/Layout.cshtml";
     //Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-    <div class="dt-buttons">
-    <a href="@Url.Action( "convertToCSV", "Department")" class="dt-button buttons-csv buttons-html5" tabindex="0" aria-controls="example23"><span>CSV</span></a>
-    <a href="@Url.Action( "convertToExcel", "Department")" class="dt-button buttons-excel buttons-html5" tabindex="0" aria-controls="example23"><span>Excel</span></a>
-    <a  href="@Url.Action( "Report", "Department")" class="dt-button buttons-pdf buttons-html5" tabindex="0" aria-controls="example23"><span>PDF</span></a>
+    <div class="row page-titles">
+        <div class="col-md-6 col-8 align-self-center">
+            <h3 class="text-themecolor m-b-0 m-t-0">Table Data table</h3>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                <li class="breadcrumb-item active"> @ViewBag.Title</li>
+            </ol>
+        </div>
+
+        <div class="col-md-6 col-4 align-self-center">
+            <button id="btncreatedept" data-toggle="modal" data-target="#exampleModal" class="btn pull-right hidden-sm-down btn-success"><i class="mdi mdi-plus-circle"></i> Create New</button>
+        </div>
+
+
     </div>
 
-<button id="btncreatedept" class="btn hidden-sm-down btn-success" data-toggle="modal" data-target="#exampleModal"><i class="mdi mdi-plus-circle"></i> Create</button>
-    <table id="dt" class="display nowrap table table-hover table-striped table-bordered">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>CreateDate</th>
-                <th>UpdateDate</th>
-                <th>Action</th>   
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
+
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Data Export</h4>
+                <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6>
+                <div class="dt-buttons">
+                    <a href="@Url.Action( "convertToCSV", "Department")" class="dt-button buttons-csv buttons-html5" tabindex="0" aria-controls="example23"><span>CSV</span></a>
+                    <a href="@Url.Action( "convertToExcel", "Department")" class="dt-button buttons-excel buttons-html5" tabindex="0" aria-controls="example23"><span>Excel</span></a>
+                    <a href="@Url.Action( "Report", "Department")" class="dt-button buttons-pdf buttons-html5" tabindex="0" aria-controls="example23"><span>PDF</span></a>
+                </div>
+
+                <div class="table-responsive m-t-40">
+                    <!--table -->
+                    <table id="dt" class="display nowrap table table-hover table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>CreateDate</th>
+                                <th>UpdateDate</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
 
 
 
