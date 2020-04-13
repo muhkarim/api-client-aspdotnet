@@ -4,7 +4,14 @@
     Layout = "~/Views/Layouts/Layout.cshtml";
 }
 
-<button class="btn hidden-sm-down btn-success" data-toggle="modal" data-target="#exampleModal"><i class="mdi mdi-plus-circle"></i> Create</button>
+
+<div class="dt-buttons">
+    <a href="@Url.Action( "convertToCSV", "Division")" class="dt-button buttons-csv buttons-html5" tabindex="0" aria-controls="example23"><span>CSV</span></a>
+    <a href="@Url.Action( "convertToExcel", "Division")" class="dt-button buttons-excel buttons-html5" tabindex="0" aria-controls="example23"><span>Excel</span></a>
+    <a href="@Url.Action( "Report", "Division")" class="dt-button buttons-pdf buttons-html5" tabindex="0" aria-controls="example23"><span>PDF</span></a>
+</div>
+
+<button id="btncreate" class="btn hidden-sm-down btn-success" data-toggle="modal" data-target="#exampleModal"><i class="mdi mdi-plus-circle"></i> Create</button>
 
 <div>
     <table id="div-table" class="display nowrap table table-hover table-striped table-bordered">
@@ -47,8 +54,8 @@
 
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Department : </label>
-                            <select class="form-control" id="DepartmentSelect"></select>
-                      
+                        <select class="form-control" id="DepartmentSelect"></select>
+
                     </div>
 
                 </form>

@@ -5,8 +5,13 @@
     //Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<button class="btn hidden-sm-down btn-success" data-toggle="modal" data-target="#exampleModal"><i class="mdi mdi-plus-circle"></i> Create</button>
-<div>
+    <div class="dt-buttons">
+    <a href="@Url.Action( "convertToCSV", "Department")" class="dt-button buttons-csv buttons-html5" tabindex="0" aria-controls="example23"><span>CSV</span></a>
+    <a href="@Url.Action( "convertToExcel", "Department")" class="dt-button buttons-excel buttons-html5" tabindex="0" aria-controls="example23"><span>Excel</span></a>
+    <a  href="@Url.Action( "Report", "Department")" class="dt-button buttons-pdf buttons-html5" tabindex="0" aria-controls="example23"><span>PDF</span></a>
+    </div>
+
+<button id="btncreatedept" class="btn hidden-sm-down btn-success" data-toggle="modal" data-target="#exampleModal"><i class="mdi mdi-plus-circle"></i> Create</button>
     <table id="dt" class="display nowrap table table-hover table-striped table-bordered">
         <thead>
             <tr>
@@ -82,7 +87,7 @@
 
 
 <!-- Department JS-->
-<script src="~/Scripts/DepartmentScript.js"></script>
+<script src="~/Scripts/DepartmentJS.js"></script>
 
 <!-- Sweetalert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.10.9/dist/sweetalert2.all.min.js"></script>

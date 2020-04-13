@@ -1,13 +1,17 @@
 ﻿using BelajarAPI.Models;
+using Client_App.Report;
 using Newtonsoft.Json;
+using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using WebGrease.Css.Extensions;
 
 namespace Client_App.Controllers
 {
@@ -92,5 +96,109 @@ namespace Client_App.Controllers
         {
             return View(LoadDepartment());
         }
+
+
+
+
+        public  ActionResult Report(Department department)
+        {
+            DepartmentReport deptreport = new DepartmentReport();
+            byte[] abytes = deptreport.PrepareReport(exportToPdf());
+            return File(abytes, "application/pdf", $"Department_{DateTime.Now.ToString("MM/dd/yyyy")}.pdf"); 
+        }
+
+        public List<Department> exportToPdf()
+        {
+            IEnumerable<Department> model = null;
+            var responTask = client.GetAsync("department");
+            responTask.Wait();
+            var result = responTask.Result;
+            if (result.IsSuccessStatusCode)
+            {
+                var readTask = result.Content.ReadAsAsync<IList<Department>>();
+                readTask.Wait();
+                model = readTask.Result;
+            }
+            else
+            {
+                model = Enumerable.Empty<Department>();
+                ModelState.AddModelError(string.Empty, "server error, try after some time");
+            }
+
+            return model.ToList();
+        }
+
+
+        public async Task<ActionResult> convertToExcel()
+        {
+            var columnHeaders = new string[]
+            {
+                "Name",
+                "Create Date"
+            };
+
+            byte[] result;
+
+            using (var package = new ExcelPackage())
+            {
+                var worksheet = package.Workbook.Worksheets.Add("Department Excel");
+                using (var cells = worksheet.Cells[1, 1, 1, 2])
+                {
+                    cells.Style.Font.Bold = true;
+                }
+
+                for (var i = 0; i < columnHeaders.Count(); i++)
+                {
+                    worksheet.Cells[1, i + 1].Value = columnHeaders[i];
+                }
+
+                var j = 2;
+                HttpResponseMessage response = await client.GetAsync("department");
+                if (response.IsSuccessStatusCode)
+                {
+                    var readTask = await response.Content.ReadAsAsync<IList<Department>>();
+                    foreach (var department in readTask)
+                    {
+                        worksheet.Cells["A" + j].Value = department.Name;
+                        worksheet.Cells["B" + j].Value = department.CreateDate.ToString("MM/dd/yyyy");
+                        j++;
+                    }
+                }
+                result = package.GetAsByteArray();
+            }
+            return File(result, "application/ms-excel", $"Department_{DateTime.Now.ToString("MM/dd/yyyy")}.xlsx");
+        }
+
+
+        public async Task<ActionResult> convertToCSV()
+        {
+            var columnHeaders = new string[]
+            {
+                "Nama Department",
+                "Create Date"
+            };
+
+            HttpResponseMessage response = await client.GetAsync("department");
+            var readTask = await response.Content.ReadAsAsync<IList<Department>>();
+            var departmentRecords = from department in readTask
+                                    select new object[]
+                                    {
+                                        $"{department.Name}",
+                                        $"\"{department.CreateDate.ToString("MM/dd/yyyy")}\"" 
+                                    }.ToList();
+
+            var departmentcsv = new StringBuilder();
+            departmentRecords.ForEach(line =>
+            {
+                departmentcsv.AppendLine(string.Join(",", line));
+            });
+
+            byte[] buffer = Encoding.ASCII.GetBytes($"{string.Join(",", columnHeaders)}\r\n{departmentcsv.ToString()}");
+
+            return File(buffer, "application/ms-excel", $"CSV_Department_{DateTime.Now.ToString("MM/dd/yyyy")}.csv");
+        }
+
+
+
     }
 }

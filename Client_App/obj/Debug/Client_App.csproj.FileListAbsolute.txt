@@ -33,6 +33,8 @@ C:\Users\Karim\Documents\Visual Studio 2017\Projects\BelajarAPI\Client_App\bin\B
 C:\Users\Karim\Documents\Visual Studio 2017\Projects\BelajarAPI\Client_App\bin\Dapper.dll
 C:\Users\Karim\Documents\Visual Studio 2017\Projects\BelajarAPI\Client_App\bin\EntityFramework.dll
 C:\Users\Karim\Documents\Visual Studio 2017\Projects\BelajarAPI\Client_App\bin\EntityFramework.SqlServer.dll
+C:\Users\Karim\Documents\Visual Studio 2017\Projects\BelajarAPI\Client_App\bin\EPPlus.dll
+C:\Users\Karim\Documents\Visual Studio 2017\Projects\BelajarAPI\Client_App\bin\itextsharp.dll
 C:\Users\Karim\Documents\Visual Studio 2017\Projects\BelajarAPI\Client_App\bin\Microsoft.AI.Agent.Intercept.dll
 C:\Users\Karim\Documents\Visual Studio 2017\Projects\BelajarAPI\Client_App\bin\Microsoft.AI.DependencyCollector.dll
 C:\Users\Karim\Documents\Visual Studio 2017\Projects\BelajarAPI\Client_App\bin\Microsoft.AI.PerfCounterCollector.dll
@@ -70,6 +72,8 @@ C:\Users\Karim\Documents\Visual Studio 2017\Projects\BelajarAPI\Client_App\bin\S
 C:\Users\Karim\Documents\Visual Studio 2017\Projects\BelajarAPI\Client_App\bin\BelajarAPI.pdb
 C:\Users\Karim\Documents\Visual Studio 2017\Projects\BelajarAPI\Client_App\bin\BelajarAPI.dll.config
 C:\Users\Karim\Documents\Visual Studio 2017\Projects\BelajarAPI\Client_App\bin\Dapper.xml
+C:\Users\Karim\Documents\Visual Studio 2017\Projects\BelajarAPI\Client_App\bin\EPPlus.xml
+C:\Users\Karim\Documents\Visual Studio 2017\Projects\BelajarAPI\Client_App\bin\itextsharp.xml
 C:\Users\Karim\Documents\Visual Studio 2017\Projects\BelajarAPI\Client_App\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\Karim\Documents\Visual Studio 2017\Projects\BelajarAPI\Client_App\bin\System.Net.Http.Formatting.xml
 C:\Users\Karim\Documents\Visual Studio 2017\Projects\BelajarAPI\Client_App\bin\System.Web.Helpers.xml

@@ -50,8 +50,10 @@ $(document).ready(function () {
     // hide button update modal
     $('#Update').hide();
 
-});
+    LoadDepartment($('#DepartmentSelect')); // id department option
 
+
+});
 
 
 function Save() {
@@ -59,29 +61,47 @@ function Save() {
     var Division = new Object();
     Division.Name = $('#Name').val();
     Division.DepartmentId = $('#DepartmentSelect').val();
-    $.ajax({
-        type: 'POST',
-        url: '/Division/InsertOrUpdate/',
-        data: Division
-    }).then((result) => {
-        if (result.StatusCode == 200) {
-            Swal.fire({
-                icon: 'success',
-                position: 'center',
-                type: 'success',
-                showConfirmButton: false,
-                timer: 1500,
-                title: 'Added Succesfully'
-            }).then(function () {
-                table.ajax.reload();
-                ClearScreen(); // delete value name department
-            });
-        }
-        else {
-            Swal.fire('Error', 'Failed to Add Division', 'error');
-            ShowModal();
-        }
-    })
+
+    if ($('#Name').val() == "") {
+        Swal.fire({
+            icon: 'info',
+            title: 'Require',
+            text: 'Name Cannot be Empty',
+        })
+        return false;
+    } else if ($('#DepartmentSelect').val() == "" || $('#DepartmentSelect').val() == null) {
+        Swal.fire({
+            icon: 'info',
+            title: 'Require',
+            text: 'Department Cannot be Empty',
+        })
+        return false;
+    } else {
+        $.ajax({
+            type: 'POST',
+            url: '/Division/InsertOrUpdate/',
+            data: Division
+        }).then((result) => {
+            if (result.StatusCode == 200) {
+                Swal.fire({
+                    icon: 'success',
+                    position: 'center',
+                    type: 'success',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    title: 'Added Succesfully'
+                }).then(function () {
+                    table.ajax.reload();
+                    ClearScreen(); // delete value name department
+                });
+            }
+            else {
+                Swal.fire('Error', 'Failed to Add Division', 'error');
+                ShowModal();
+            }
+        })
+    }
+    
 }
 
 // code dropdown select
@@ -112,11 +132,10 @@ function renderDepartment(element) {
     })
 }
 
-LoadDepartment($('#DepartmentSelect')); // id department option
 // end code dropdown select
 
 function GetById(Id) {
-    debugger;
+    //debugger;
     $.ajax({
         url: "/Division/GetById/" + Id,
         type: "GET",
@@ -124,7 +143,7 @@ function GetById(Id) {
         dataType: "json",
         async: false,
         success: function (result) {
-            debugger;
+            //debugger;
             const obj = JSON.parse(result);
             $('#Id').val(obj.Id);
             $('#Name').val(obj.DivisionName);
@@ -225,3 +244,15 @@ function ClearScreen() {
     $('#Delete').hide();
     $('#exampleModal').modal('hide');
 }
+
+
+document.getElementById("btncreate").addEventListener("click", function () {
+    $('#Id').val('');
+    $('#Name').val('');
+    $('#Save').show();
+    $('#Update').hide();
+    $('#Delete').hide();
+    $('#exampleModal').modal('show');
+    LoadDepartment($('#DepartmentSelect')); // id department option
+
+});
